@@ -189,172 +189,141 @@ Re-login to DC-1 using {root-domain-name}/{username}
 <h3>Create an admin and normal user account in AD</h3>
 
 <p>
-
+Open Active Directory Users and Computers
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/lpGxlPs.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Create a new Organizational Unit called "_EMPLOYEES" and one called "_ADMINS"
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/NtKXrVb.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+In _ADMINS folder, right click and create new user
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/9Ri8jkf.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Right click on user and go to properties -> member of -> add -> Domain Admins
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/yy0WXvi.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Logout of DC-1
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/C9EQFQu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Log in with newly created admin user
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/ooMJ7ET.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<br />
+
+<h3>Join Client-1 to domain</h3>
+
+<p>
+Change Client-1's DNS to DC-1's private IP in Azure Portal
+</p>
+<ul><li>Get DC-1's private IP</li><li>Go to Client-1 -> Networking -> Network Interface -> DNS servers</li><li>Click Custom and paste DC-1's private IP and Save</li></ul>
+<p>
+<img src="https://i.imgur.com/kSgCgb9.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Restart Client-1
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/5sbz2R4.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Join Client-1 to the domain
 </p>
+<p>Right click start -> System -> Rename this PC -> Change -> Domain -> type {domain name}</p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/u3vwxr2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Enter admin username and password and restart
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/ANFRgRB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<br />
+
+<h3>Setup Remote Desktop for non-admin users on Client-1</h3>
+
+<p>
+Log in to Client-1 with admin
+</p>
+<p>Right click start -> System -> Remote desktop -> Select users that can remotely access this PC -> Add -> Domain Users</p>
+<p>
+<img src="https://i.imgur.com/G8L5EKq.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+<br />
+
+<h3>Create additional users and log into Client-1</h3>
+
+<p>Log in to DC-1 as admin</p>
+<br/>
+
+<p>
+Open PowerShell ISE as admin
+</p>
+<p>
+<img src="https://i.imgur.com/SymjtLF.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <br />
 
 <p>
-
+Create new script and paste code from https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/TdmUdUn.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-
+<p>Run the script</p>
 <br />
 
+<p>Log in to Client-1 with a random newly created user</p>
 <p>
-
+Active Directory Users and Computers -> _EMPLOYEES folder -> right click any user -> Properties -> Account -> copy logon name	
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
-
-<p>
-
+<img src="https://i.imgur.com/TL6JzUU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Log out of Client-1 and log in with new username
 </p>
-
-<br />
-
-<p>
-
-</p>
-<p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
-
-<p>
-
-</p>
-<p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
-
-<p>
-
-</p>
-<p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
-
-<p>
-
-</p>
-<p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
-
-<p>
-
-</p>
-<p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
-
-<p>
-
-</p>
-<p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
-
-<p>
-
-</p>
-<p>
-<img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-<br />
